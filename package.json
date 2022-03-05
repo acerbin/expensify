@@ -1,0 +1,41 @@
+{
+  "name": "expensify-app",
+  "description": "",
+  "main": "app.js",
+  "author": "Kat&Nic",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^6.5.1",
+    "moment": "^2.29.1",
+    "node-sass": "^7.0.1",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.2",
+    "react-datepicker": "^4.7.0",
+    "react-dates": "^21.8.0",
+    "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "redux": "^4.1.2",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "uuid": "^8.3.2",
+    "webpack": "^5.67.0",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "scripts": {
+    "compile": "babel src/playground/counter.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "start": "live-server public",
+    "build": "webpack --watch",
+    "server": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
+  }
+}
