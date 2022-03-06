@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Expense from './Expense';
 import ExpenseSelector from '../selectors/expenses';
-
+import ExpenseSummary from "./ExpenseSummary";
 const ExpenseList = (props) => (
     <div>
         <h1>Expenses</h1>
+        <ExpenseSummary />
         <table border='solid'>
             <thead>
                 <tr>

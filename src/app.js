@@ -8,19 +8,21 @@ import { addExpense } from './actions/expenses';
 import getVisibleExpenses from './selectors/expenses';
 import {setTextFilter} from './actions/filters';
 import {Provider} from 'react-redux';
-
+import selectExpenseTotal from './selectors/expenses-total';
 
 const store = configureStore();
 
 store.subscribe(() => {
     const state = store.getState();
     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+    const totalExpenses = selectExpenseTotal(visibleExpenses)
+    console.log(totalExpenses)
     console.log(state)
 })
 
 const expenseOne = store.dispatch(addExpense({description: 'Water Bill', amount: 100 , createdAt: 1647392463000}));
 const expenseTwo = store.dispatch(addExpense({description: 'Gas Bill', amount: 300, createdAt: 1643331603000}));
-const expenseThree = store.dispatch(addExpense({description: 'Rent', amount: 105000, createdAt: 1643331603000}));
+const expenseThree = store.dispatch(addExpense({description: 'Rent', amount: 105000, createdAt: 1647046803000}));
 
 // console.log(store.getState());
 
