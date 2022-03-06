@@ -6,17 +6,13 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { addExpense } from './actions/expenses';
 import getVisibleExpenses from './selectors/expenses';
-import {setTextFilter} from './actions/filters';
 import {Provider} from 'react-redux';
-import selectExpenseTotal from './selectors/expenses-total';
 
 const store = configureStore();
 
 store.subscribe(() => {
     const state = store.getState();
     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-    const totalExpenses = selectExpenseTotal(visibleExpenses)
-    console.log(totalExpenses)
     console.log(state)
 })
 
