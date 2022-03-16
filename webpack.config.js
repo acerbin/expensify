@@ -5,9 +5,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if(process.env.NODE_ENV === 'development') {
     require('dotenv').config({path: '.env.development'})
-} else {
-    require('dotenv').config({path: '.env.production'})
 }
+// } else {
+//     require('dotenv').config({path: '.env.production'})
+// }
 
 module.exports = {
     entry: "./src/app.js",
@@ -36,7 +37,7 @@ module.exports = {
             'process.env.FIREBASE_STORAGE_BUCKET':JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
             'process.env.FIREBASE_MESSAGING_SENDER_ID':JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
             'process.env.FIREBASE_APP_ID':JSON.stringify(process.env.FIREBASE_APP_ID),
-            'process.env.FIREBASE_MEASUREMENT_ID':JSON.stringify(process.env.FIREBASE_MEASUREMENT_ID),
+            'process.env.FIREBASE_MEASUREMENT_ID':JSON.stringify(process.env.FIREBASE_MEASUREMENT_ID)
         })
     ],
     devtool: "eval-cheap-module-source-map",
