@@ -21,7 +21,7 @@ const ExpenseList = (props) => (
                     return (
                         <Expense 
                             {...expense}
-                            key={expense.id}
+                            key={index}
                         />
                     )
                 })}
