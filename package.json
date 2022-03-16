@@ -4,6 +4,12 @@
   "main": "app.js",
   "author": "Kat&Nic",
   "license": "MIT",
+  "eslintConfig": {
+    "env": {
+        "browser": true,
+        "node": true
+    }
+  },
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "7",
