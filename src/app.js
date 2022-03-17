@@ -4,7 +4,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import getVisibleExpenses from './selectors/expenses';
 import {Provider} from 'react-redux';
 import './firebase/firebase'
@@ -17,11 +17,7 @@ store.subscribe(() => {
     console.log(state)
 })
 
-const expenseOne = store.dispatch(addExpense({description: 'Water Bill', amount: 100 , createdAt: 1647392463000}));
-const expenseTwo = store.dispatch(addExpense({description: 'Gas Bill', amount: 300, createdAt: 1643331603000}));
-const expenseThree = store.dispatch(addExpense({description: 'Rent', amount: 105000, createdAt: 1647046803000}));
 
-// console.log(store.getState());
 
 // store.dispatch(setTextFilter('water'));
 
@@ -33,7 +29,12 @@ const renderApp = () => {
             <AppRouter />
         </Provider>
     )
-    ReactDOM.render(jsx, appRoot)
+    ReactDOM.render(<p>Loading...</p>, appRoot)
+    store.dispatch(startSetExpenses()).then(() => {
+        ReactDOM.render(jsx, appRoot)
+    }).catch((err) => {
+        console.log(err)
+    })
 }
 
 renderApp();

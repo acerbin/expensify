@@ -35,3 +35,31 @@ export const editExpense = (id, updates) => ({
     id,
     updates
 })
+
+
+//SET_EXPENSES
+export const setExpenses = (expenses) => ({
+    type: "SET_EXPENSES",
+    expenses
+})
+
+export const startSetExpenses = () => {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+                firebase.get(firebase.ref(database, 'expenses'))
+                .then((snapshot) => {
+                    const expensesArray = []
+                    snapshot.forEach((childSnapshot) => {
+                        expensesArray.push({
+                            id: childSnapshot.key,
+                            ...childSnapshot.val()
+                        })
+                    })
+                    resolve(dispatch(setExpenses(expensesArray)))
+                })
+                .catch((err) => {
+                    reject(err)
+                })
+        })
+    }
+}
