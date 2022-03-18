@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {removeExpense} from "../actions/expenses";
+import {startRemoveExpense} from "../actions/expenses";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import numeral from "numeral";
@@ -17,7 +17,7 @@ const Expense = (props) => {
         <td>{(new Date(props.createdAt)).toLocaleDateString()}</td>
         <td><button onClick={(e) => {
             e.preventDefault();
-            props.dispatch(removeExpense({id:props.id}))
+            props.dispatch(startRemoveExpense({id:props.id}))
             console.log(props.id)
         }}>Remove</button>
         <button onClick={(e) => {
