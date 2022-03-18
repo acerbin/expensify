@@ -38,9 +38,6 @@ export const startRemoveExpense = ({id} = {}) => {
     }
 }
 
-// firebase.remove(ref(database, 'user/age')).then(() => {
-//     console.log("removed")
-// })
 
 //EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
@@ -48,6 +45,16 @@ export const editExpense = (id, updates) => ({
     id,
     updates
 })
+
+export const startEditExpense = (id, updates) => {
+    return (dispatch) => {
+        return firebase.update(firebase.ref(database, 'expenses/' + id), updates)
+        .then(() => {
+            dispatch(editExpense(id, updates))
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 
 //SET_EXPENSES
