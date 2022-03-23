@@ -10,7 +10,7 @@ const AddExpensePage = (props) => {
         <h1 className="dashboard_title">Add Expense</h1>
         <ExpenseForm onSubmit={(expense) => {
             props.dispatch(startAddExpense(expense))
-            navigate("/")
+            navigate("/dashboard")
         }}/>
     </div>)
 }

@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
 import { getDatabase, ref, set , child, get, remove, update, onValue, query, push, onChildChanged} from "firebase/database";
 
 import { getAnalytics } from "firebase/analytics";
@@ -18,8 +20,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+// provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-export {get, database as default};
+// https://firebase.google.com/docs/auth/web/google-signin
+
+export {get,auth, provider, database as default};
 
 // const rootRef = ref(database);
 // const expensesRef = ref(database, 'expenses');
