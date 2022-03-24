@@ -20,22 +20,21 @@ store.subscribe(() => {
 })
 
 const user = auth.currentUser;
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user = auth.currentUser) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
+      console.log("Auth state changed")
       const uid = user.uid;
       store.dispatch(login(uid))
-      // ...
+      renderApp()
     } else {
-      // User is signed out
       store.dispatch(logout())
     }
-  });
+});
 // store.dispatch(setTextFilter('water'));
 
 
 const renderApp = () => {
+
     const appRoot = document.getElementById('root')
     const jsx = (
         <Provider store={store}>
@@ -43,11 +42,12 @@ const renderApp = () => {
         </Provider>
     )
     ReactDOM.render(<p>Loading...</p>, appRoot)
-    store.dispatch(startSetExpenses()).then(() => {
+    store.dispatch(startSetExpenses())
+    .then(() => {
         ReactDOM.render(jsx, appRoot)
     }).catch((err) => {
         console.log(err)
     })
 }
 
-renderApp();
+
