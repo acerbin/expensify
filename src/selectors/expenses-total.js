@@ -1,5 +1,5 @@
 const selectExpenseTotal = (expenses) => {
-    if(expenses.lenght === 0) {
+    if(expenses.length === 0) {
         return 0;
     }
     return expenses
