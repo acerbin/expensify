@@ -50,4 +50,6 @@ const renderApp = () => {
     })
 }
 
+renderApp()
+
 
