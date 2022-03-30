@@ -4,7 +4,7 @@ import ExpenseForm from "./ExpenseForm";
 import { useSelector, useDispatch } from "react-redux";
 import { startEditExpense } from "../actions/expenses";
 import { useNavigate } from "react-router-dom";
-
+import {startRemoveExpense} from "../actions/expenses";
 
 const EditExpensesDashboardPage = (props) =>  {
     const { id } = useParams();
@@ -15,24 +15,22 @@ const EditExpensesDashboardPage = (props) =>  {
                 return expense.id === id;
             })
     })
-    console.log(expense)
-    return (<ExpenseForm 
-        expense={expense}
-        onSubmit = {(expenseChanges) => {
-            dispatch(startEditExpense(expense.id, expenseChanges))
-            navigate("/")
-        }}
-        />)
-}
+    return (
+        <div className=".content-container--collumn">
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Edit Expense</h1>
+                    </div>
+                </div>
+                <ExpenseForm 
+                expense={expense}
+                onSubmit = {(expenseChanges) => {
+                    dispatch(startEditExpense(expense.id, expenseChanges))
+                    navigate("/dashboard")
+                }}
+                />
 
-// const mapStoreToProps = (state, props) => {
-//     console.log(props)
-//     return {
-//         expense: state.expenses.find((expense) => {
-//             return expense.id === "daf8691f-6d83-44c0-b3c5-c1814a29c101";
-//         })
-//     }
-// }
+        </div>
+)}
 
-// export default connect(mapStoreToProps)(EditExpensesDashboardPage);
 export default EditExpensesDashboardPage;

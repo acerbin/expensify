@@ -10,7 +10,7 @@ import getVisibleExpenses from './selectors/expenses';
 import {auth} from './firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import {login, logout} from './actions/auth';
-
+import LoadingPage from './components/LoadingPage';
 const store = configureStore();
 
 store.subscribe(() => {
@@ -41,7 +41,7 @@ const renderApp = () => {
             <AppRouter />
         </Provider>
     )
-    ReactDOM.render(<p>Loading...</p>, appRoot)
+    ReactDOM.render(<LoadingPage />, appRoot)
     store.dispatch(startSetExpenses())
     .then(() => {
         ReactDOM.render(jsx, appRoot)

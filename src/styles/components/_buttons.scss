@@ -1,0 +1,28 @@
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.active-button {
+    background: teal;
+    border-radius: 3px;
+    color: whitesmoke;
+    padding: $s-size;
+    font-size: large;
+    // border: none;
+    border-color: darken($color: teal, $amount: 0.15);
+}
+
+.active-button--link {
+    background: none;
+    border: none;
+}
+
+.active-button--secondary {
+    background: $grey;
+    border-color: darken($color: $grey, $amount: 0.15);
+    margin-left: $l-size;
+}

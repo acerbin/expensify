@@ -15,11 +15,12 @@ const LoginPage = () => {
         })
     }
     return (
-        <div className='wrapper'>
-            <form>
-
-                <input type='submit' value='Login' onClick={onLogin}/>
-            </form>
+        <div className='wrapper box-layout'>
+            <div className='box-layout__box'>
+                <h1 className='box-layout__box__heading'>Expensify</h1>
+                <p>Put your expenses under control.</p>
+                <input className='active-button' type='submit' value='Login with Google' onClick={onLogin}/>
+            </div>
         </div>
     )
 }

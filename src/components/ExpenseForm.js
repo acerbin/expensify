@@ -1,94 +1,119 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { startEditExpense } from "../actions/expenses";
+import {startRemoveExpense} from "../actions/expenses";
 
-export default class ExpenseForm extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            description : props.expense ? props.expense.description : "",
-            note: props.expense ? props.expense.note : "",
-            amount: props.expense ? (props.expense.amount/100).toString() : "",
-            createdAt: props.expense ? props.expense.createdAt : new Date(),
-            calendarFocused: false,
-            error: ""
-        }
-    }
+const ExpenseForm = (props) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [state, setState] = useState({
+        description : props.expense ? props.expense.description : "",
+        note: props.expense ? props.expense.note : "",
+        amount: props.expense ? (props.expense.amount/100).toString() : "",
+        createdAt: props.expense ? props.expense.createdAt : new Date(),
+        id: props.expense ? props.expense.id : "",
+        calendarFocused: false,
+        error: ""
+    })
     
-    onDescriptionChange = (e) => {
+    
+    const onDescriptionChange = (e) => {
         const description = e.target.value;
-        this.setState(() => ({description}))
+        console.log("State: " + JSON.stringify(state))
+        setState(() => ({...state, description}))
     }
 
-    onNoteChange = (e) => {
+    const onNoteChange = (e) => {
         const note = e.target.value;
-        this.setState(() => ({note}))
+        setState(() => ({...state, note}))
     }
 
-    onAmountChange = (e) => {
+    const onAmountChange = (e) => {
         const amount = e.target.value;
         if(!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-            this.setState(() => ({amount}))
+            setState(() => ({...state, amount}))
         }
     }
 
-    onDateChange = (createdAt) => {
+    const onDateChange = (createdAt) => {
         if(createdAt) {
-            this.setState(() => ({createdAt}))
+            this.setState(() => ({...state, createdAt}))
         }
     }
 
-    onFormSubmit = (e) => {
+    const onFormSubmit = (e) => {
         e.preventDefault();
-        if(!this.state.amount || !this.state.description) {
-            this.setState(() => ({error: "Please provide description and amount values."}))
+        if(!state.amount || !state.description) {
+            setState(() => ({...state, error: "Please provide description and amount values"}))
         } else {
-            this.setState(() => ({error: ""}))
-            this.props.onSubmit({
-                description: this.state.description,
-                amount: parseFloat(this.state.amount)*100,
-                createdAt: this.state.createdAt.valueOf(),
-                note: this.state.note
+            setState(() => ({...state, error: ""}))
+            props.onSubmit({
+                description: state.description,
+                amount: parseFloat(state.amount)*100,
+                createdAt: state.createdAt.valueOf(),
+                note: state.note
             })
         }
     } 
 
-    render() {
         return (
-            <div>
-                <form onSubmit={this.onFormSubmit}>
-                    {this.state.error && <p className="error">{this.state.error}</p>}
+            <div className="content-container content-container--override">
+                <form className="form" onSubmit={onFormSubmit}>
+                    {state.error && <p className="form__error">{state.error}</p>}
                     <input 
+                        className="text-input"
                         type="text"
                         placeholder="Description"
                         autoFocus
-                        value={this.state.description}
-                        onChange={this.onDescriptionChange}
+                        value={state.description}
+                        onChange={onDescriptionChange}
                     />
                     <input 
+                        className="text-input"
                         type="text"
                         placeholder="Amount"
-                        value={this.state.amount}
-                        onChange={this.onAmountChange}
+                        value={state.amount}
+                        onChange={onAmountChange}
                     />
                     <DatePicker
+                        className="text-input"
                         dateFormat="dd/MM/yyyy"
-                        selected={this.state.createdAt}
-                        onSelect={this.onDateChange} //when day is clicked
-                        onChange={this.onDateChange} //only when value has changed
-                        showMonthDropdown
-                        showYearDropdown
+                        selected={state.createdAt}
+                        onSelect={onDateChange} //when day is clicked
+                        onChange={onDateChange} //only when value has changed
+                        // showMonthDropdown
+                        // showYearDropdown
                         dropdownMode="select"
                         className="date-picker"
                     />
                     <textarea 
+                        className="textarea"
                         placeholder="Add a note for your expense (Optional)"
-                        value={this.state.note}
-                        onChange={this.onNoteChange}
+                        value={state.note}
+                        onChange={onNoteChange}
                     />
-                    <button>{this.props.expense ? "Save Changes" : "Add Expense"}</button>
+                    <div className="wrapper">
+                       <button className="active-button">{props.expense ? "Save Expense" : "Add Expense"}</button>
+                       <button 
+                            className="active-button active-button--secondary"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const id = expense.id;
+                                dispatch(startRemoveExpense({id}));
+                                navigate("/dashboard")
+                            }}>
+                            Remove Expense
+                    </button>
+                   </div>
                 </form>
             </div>
         )
-    }
 }
+
+
+export default ExpenseForm;

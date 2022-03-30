@@ -1,6 +1,7 @@
 form {
     display: flex;
     flex-direction: column;
+    width: 60rem;
 }
 
 form input{
@@ -19,8 +20,9 @@ form button{
     margin: 0;
 }
 
-.error {
-    color: red;
+.form__error {
+    margin: 0 0 $m-size 0;
+    font-style: italic;
 }
 
 .date-picker {

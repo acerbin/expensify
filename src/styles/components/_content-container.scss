@@ -1,0 +1,19 @@
+.content-container {
+    margin: 0, auto;
+    padding: 0 $m-size;
+    width: 94%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-container--override {
+    @extend .content-container;
+    justify-content: center;
+}
+
+
+.content-container--collumn {
+    @extend .content-container;
+    justify-content: center;
+    flex-direction: column;
+}

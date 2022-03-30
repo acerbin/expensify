@@ -5,15 +5,18 @@ html {
 body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
-    background-color: whitesmoke;
-    background-image: url("https://transparenttextures.com/patterns/cubes.png");
-    margin: $m-size;
+    color: $dark-grey;
+    line-height: 1.6;
+    // background-color: whitesmoke;
+    // background-image: url("https://transparenttextures.com/patterns/cubes.png");
+    // margin: $m-size;
 }
 
-button {
-    cursor: pointer;
+a {
+    text-decoration: none;
+    color: $dark-grey;
 }
 
-button:disabled {
-    cursor: default;
+* {
+    box-sizing: border-box;
 }

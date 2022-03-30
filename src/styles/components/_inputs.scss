@@ -1,0 +1,27 @@
+.text-input {
+    border: 1px solid #cacccd !important;
+    height: 50px !important;
+    padding: $s-size !important;
+    font-size: large !important;
+    font-weight: 300 !important;
+    width: 100%;
+
+    @media (max-width: $desktopBreakpoint) {
+
+    }
+
+}
+
+.select {
+    @extend .text-input;
+}
+
+.textarea {
+    @extend .text-input;
+    height: 10rem;
+}
+
+.date-picker {
+    @extend .text-input; 
+    width: 100%;
+}
