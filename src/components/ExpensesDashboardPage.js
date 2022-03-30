@@ -10,6 +10,7 @@ const ExpensesDashboardPage = () => (
             <ExpenseListFilter />
             <ExpenseList />
         </div>
+        <div className='pusher'></div>
     </div>
 
 )

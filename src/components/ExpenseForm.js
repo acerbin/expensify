@@ -62,56 +62,62 @@ const ExpenseForm = (props) => {
     } 
 
         return (
-            <div className="content-container content-container--override">
-                <form className="form" onSubmit={onFormSubmit}>
-                    {state.error && <p className="form__error">{state.error}</p>}
-                    <input 
-                        className="text-input"
-                        type="text"
-                        placeholder="Description"
-                        autoFocus
-                        value={state.description}
-                        onChange={onDescriptionChange}
-                    />
-                    <input 
-                        className="text-input"
-                        type="text"
-                        placeholder="Amount"
-                        value={state.amount}
-                        onChange={onAmountChange}
-                    />
-                    <DatePicker
-                        className="text-input"
-                        dateFormat="dd/MM/yyyy"
-                        selected={state.createdAt}
-                        onSelect={onDateChange} //when day is clicked
-                        onChange={onDateChange} //only when value has changed
-                        // showMonthDropdown
-                        // showYearDropdown
-                        dropdownMode="select"
-                        className="date-picker"
-                    />
-                    <textarea 
-                        className="textarea"
-                        placeholder="Add a note for your expense (Optional)"
-                        value={state.note}
-                        onChange={onNoteChange}
-                    />
-                    <div className="wrapper">
-                       <button className="active-button">{props.expense ? "Save Expense" : "Add Expense"}</button>
-                       <button 
-                            className="active-button active-button--secondary"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const id = expense.id;
-                                dispatch(startRemoveExpense({id}));
-                                navigate("/dashboard")
-                            }}>
-                            Remove Expense
-                    </button>
-                   </div>
-                </form>
+            <div>
+                <div className="content-container content-container--override">
+                    <form className="form" onSubmit={onFormSubmit}>
+                        {state.error && <p className="form__error">{state.error}</p>}
+                        <input 
+                            className="text-input"
+                            type="text"
+                            placeholder="Description"
+                            autoFocus
+                            value={state.description}
+                            onChange={onDescriptionChange}
+                        />
+                        <input 
+                            className="text-input"
+                            type="text"
+                            placeholder="Amount"
+                            value={state.amount}
+                            onChange={onAmountChange}
+                        />
+                        <DatePicker
+                            className="text-input"
+                            dateFormat="dd/MM/yyyy"
+                            selected={state.createdAt}
+                            onSelect={onDateChange} //when day is clicked
+                            onChange={onDateChange} //only when value has changed
+                            // showMonthDropdown
+                            // showYearDropdown
+                            dropdownMode="select"
+                            className="date-picker"
+                        />
+                        <textarea 
+                            className="textarea"
+                            placeholder="Add a note for your expense (Optional)"
+                            value={state.note}
+                            onChange={onNoteChange}
+                        />
+                        <div className="wrapper">
+                        <button className="active-button">{props.expense ? "Save Expense" : "Add Expense"}</button>
+                        <button 
+                                className="active-button active-button--secondary"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const id = props.expense.id;
+                                    dispatch(startRemoveExpense({id}));
+                                    navigate("/dashboard")
+                                }}>
+                                Remove Expense
+                        </button>
+                    </div>
+                    </form>
+
+                </div>
+                <div className="pusher">
+                </div>
             </div>
+
         )
 }
 
