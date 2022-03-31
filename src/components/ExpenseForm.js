@@ -42,7 +42,7 @@ const ExpenseForm = (props) => {
 
     const onDateChange = (createdAt) => {
         if(createdAt) {
-            this.setState(() => ({...state, createdAt}))
+            setState(() => ({...state, createdAt}))
         }
     }
 
